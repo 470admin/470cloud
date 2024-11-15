@@ -3,8 +3,8 @@
 //ini_set('display_errors', 1);
 
 $servername = "localhost";
-$username = "470user";
-$password = "470User470!";
+$username = "root";
+$password = "";
 $dbname = "470Cloud";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
