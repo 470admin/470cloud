@@ -1,4 +1,7 @@
 <?php
+/*
+ * These Script remove a file.
+*/
 
 //Check Login
 define("PATH", "../../../");
