@@ -1,24 +1,30 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
+//Check Login
 define("PATH", "../../../");
 
 require "../../../assets/admin.php";
 $session = new loginManager();
 if (!$session->checkLogin()) {
-	header("Location: ../../../login.php");
-	exit;
+	die('{"status":500, "error":"Bitte lade die Seite neu."}');
 }else{
 	$session->createNewSession();
 }
 
+//Ckeck File
 if (isset($_GET["name"])) {
     $name = $_GET["name"];
-    
-    unlink("../" . $name);
-} else {
-    echo '{"status":400, "error": "ID not set"}';
+	if (!is_file("../" . $name)) {
+		die('{"status":500, "error":"Die Datei ' . basename($name) . ' exestiert nicht."}');
+	}
+	
+	//Remove File
+    if (unlink("../" . $name)) {
+		echo '{"status":200}';
+	}else{
+		echo '{"status":500, "error":"Fehler beim löschen der Datei."}';
+	}
+}else{
+    echo '{"status":400, "error": "Fehler beim übertragen der Datei ID."}';
 }
 ?>
