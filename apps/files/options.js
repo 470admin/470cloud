@@ -41,7 +41,7 @@ function remove(file) {
             if (data.status === 200) {
                 window.location.reload();
             } else {
-                document.getElementById("error").innerHTML = "<br> Es gab einen Fehler beim Löschen.";
+                alert(data.error);
             }
         })
         .catch(error => console.log(error));
