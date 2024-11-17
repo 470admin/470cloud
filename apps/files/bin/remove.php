@@ -10,8 +10,6 @@ require "../../../assets/admin.php";
 $session = new loginManager();
 if (!$session->checkLogin()) {
 	die('{"status":500, "error":"Bitte lade die Seite neu."}');
-}else{
-	$session->createNewSession();
 }
 
 //Ckeck File
